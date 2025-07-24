@@ -16,7 +16,7 @@ replacers:
   - search: '/{{{(?:(?!#### Tickets)(?!}}})[^])*?}}}/gs'
     replace: ""
   # Replace each pr body with just the tickets
-  - search: '/{{{.*?#### Tickets\s*\n(.*?)\n\s*#### Description.*?}}}/gs'
+  - search: '/{{{.*?#### Tickets\s*\n(.*?)\s*\n\s*#### Description.*?}}}/gs'
     replace: "{{{$1}}}"
   # Convert newlines to commas for ticket lists only (not affecting other content)
   - search: '/{{{([^}]*)\n([^}]*)}}}/'
