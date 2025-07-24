@@ -21,6 +21,9 @@ replacers:
   # Convert newlines into commas for tickets
   - search: '/(?<=\{{{[^}]*)\n(?=[^}]*}}})/g'
     replace: ", "
+  # Fix multi lined ones
+  - search: "/\n(?=, )/gs"
+    replace: ""
   # Make markers into list instead
   - search: "/{{{(.*?)}}}/gs"
     replace: "[$1]"
