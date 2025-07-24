@@ -9,10 +9,27 @@ categories:
       - "sonesta"
   - title: "⚙️ Dependencies"
     label: "dependencies"
-change-template: |
-  - $TITLE (#$NUMBER) @$AUTHOR
-    $BODY
+change-template: "- $TITLE (#$NUMBER) @$AUTHOR $BODY"
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
+replacers:
+  # Convert plain JIRA ticket numbers to links (only if not already linked)
+  - search: '/(?<!\[)([A-Z]+-\d+)(?!\]\()/g'
+    replace: '[$1](https://your-company.atlassian.net/browse/$1)'
+  # Remove everything except JIRA ticket links from the body
+  - search: '/- (.+?) \(#(\d+)\) @(\w+) [\s\S]*?(?=\n-|\n\n|$)/g'
+    replace: '- $1 (#$2) @$3 TICKETSHERE'
+  # Extract all JIRA tickets and replace the TICKETSHERE marker
+  - search: '/- (.+?) \(#(\d+)\) @(\w+) TICKETSHERE/g'
+    replace: '- $1 (#$2) @$3'
+  # Now find entries that have JIRA tickets and format them
+  - search: '/- (.+?) \(#(\d+)\) @(\w+)[\s\S]*?(\[[A-Z]+-\d+\]\([^)]+\)(?:(?!- |\n\n)[\s\S])*?)(?=\n-|\n\n|$)/g'
+    replace: '- $1 (#$2) @$3 - JIRA: $4'
+  # Clean up multiple spaces and format the ticket list properly
+  - search: '/- (.+?) \(#(\d+)\) @(\w+) - JIRA: ([\s\S]*?)(?=\n-|\n\n|$)/g'
+    replace: '- $1 (#$2) @$3 - JIRA: $4'
+  # Replace spaces between tickets with commas
+  - search: '/(\[[A-Z]+-\d+\]\([^)]+\))\s+(\[[A-Z]+-\d+\]\([^)]+\))/g'
+    replace: '$1, $2'
 version-resolver:
   major:
     labels:
