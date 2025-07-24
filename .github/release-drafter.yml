@@ -19,8 +19,8 @@ replacers:
   - search: '/{{{.*?#### Tickets\s*\n(.*?)\s*\n\s*#### Description.*?}}}/gs'
     replace: "{{{$1}}}"
   # Convert newlines to commas for ticket lists only (not affecting other content)
-  - search: '/(?<=\{{{[^}]*)\n(?=[^}]*}}})/g'
-    replace: ", "
+  - search: '/{{{([^\}]*?)\n([^\}]*?)}}}/gs'
+    replace: "{{{$1, $2}}}"
   # Make markers into list instead
   - search: "/{{{(.*?)}}}/gs"
     replace: "[$1]"
