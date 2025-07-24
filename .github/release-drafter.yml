@@ -12,12 +12,12 @@ categories:
 change-template: "- $TITLE (#$NUMBER) @$AUTHOR $BODY"
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 replacers:
-  # Extract content from "#### Tickets" section until next ####
-  - search: '/\#\#\#\# Tickets\n(.*)\n\n\#\#\#\#/s'
-    replace: "$1"
-  # Replace newlines with commas
+  # Replace the entire PR template structure with just the tickets
+  - search: '^.*#### Tickets\n(.*)\n\n#### Description.*/s'
+    replace: '$1'
+  # Convert newlines to commas for ticket lists only (not affecting other content)
   - search: '/(.*)\n/g'
-    replace: "$1,"
+    replace: '$1, '
 version-resolver:
   major:
     labels:
