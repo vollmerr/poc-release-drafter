@@ -18,13 +18,8 @@ replacers:
   # Replace each pr body with just the tickets
   - search: '/{{{.*?#### Tickets\s*\n(.*?)\s*\n\s*#### Description.*?}}}/gs'
     replace: "{{{$1}}}"
-  # Convert
-  # run it up 3 times / supports up to 3 tickets on pr, manually alter if more
-  - search: '/\n(?=[^{]*}}})/g'
-    replace: ", "
-  - search: '/\n(?=[^{]*}}})/g'
-    replace: ", "
-  - search: '/\n(?=[^{]*}}})/g'
+  # Convert newlines into commas for tickets
+  - search: '/(?<=\{{{[^}]*)\n(?=[^}]*}}})/g'
     replace: ", "
   # Make markers into list instead
   - search: "/{{{(.*?)}}}/gs"
