@@ -13,7 +13,7 @@ change-template: "- $TITLE (#$NUMBER) @$AUTHOR $BODY"
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 replacers:
   # Replace the entire PR template structure with just the tickets
-  - search: '^.*#### Tickets\n(.*)\n\n#### Description.*/s'
+  - search: '/^.*#### Tickets\n(.*)\n\n#### Description.*/s'
     replace: '$1'
   # Convert newlines to commas for ticket lists only (not affecting other content)
   - search: '/(.*)\n/g'
