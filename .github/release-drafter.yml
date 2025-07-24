@@ -12,14 +12,17 @@ categories:
 change-template: "- $TITLE (#$NUMBER) @$AUTHOR {{{$BODY}}}"
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 replacers:
+  # Remove invalid pr bodys
+  - search: '/{{{(?:(?!#### Tickets)(?!}}})[^])*?}}}/gs'
+    replace: ""
   # Replace each pr body with just the tickets
-  - search: '/{{{.*#### Tickets\n(.*)\n\n#### Description.*}}}/s'
+  - search: '/{{{.*?#### Tickets\n(.*?)\n\n#### Description.*?}}}/gs'
     replace: "{{{$1}}}"
   # Convert newlines to commas for ticket lists only (not affecting other content)
   - search: '/\n(?=[^{]*}}})/gs'
-    replace: "$1, "
+    replace: ", "
   # Make markers into list instead
-  - search: '/{{{$1}}}/gs'
+  - search: '/{{{(.*?)}}}/gs'
     replace: "[$1]"
 version-resolver:
   major:
