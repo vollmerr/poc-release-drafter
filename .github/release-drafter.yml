@@ -9,7 +9,9 @@ categories:
       - "sonesta"
   - title: "⚙️ Dependencies"
     label: "dependencies"
-change-template: "- $TITLE (#$NUMBER) @$AUTHOR $BODY"
+change-template: |
+  - $TITLE (#$NUMBER) @$AUTHOR
+    $BODY
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 version-resolver:
   major:
