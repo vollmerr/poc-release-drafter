@@ -10,7 +10,6 @@ categories:
   - title: "⚙️ Dependencies"
     label: "dependencies"
 change-template: "- $TITLE (#$NUMBER) @$AUTHOR {{{$BODY}}}"
-change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 replacers:
   # Remove invalid pr bodys
   - search: "/{{{(?:(?!#### Tickets)(?!}}})[^])*?}}}/gs"
@@ -18,9 +17,9 @@ replacers:
   # Replace each pr body with just the tickets
   - search: '/{{{.*?#### Tickets\s*\n(.*?)\s*\n\s*#### Description.*?}}}/gs'
     replace: "{{{$1}}}"
-  # # Convert newlines into commas for tickets
-  # - search: '/(?<=\{{{[^}]*)\n(?=[^}]*}}})/g'
-  #   replace: ", "
+  # Convert newlines into commas for tickets
+  - search: '/(?<=\{{{[^}]*)\n(?=[^}]*}}})/g'
+    replace: ", "
   # # Fix multi lined ones
   # - search: "/\n(?=, )/gs"
   #   replace: ""
