@@ -18,8 +18,8 @@ replacers:
   - search: '/{{{.*?#### Tickets\s*\n(.*?)\s*\n\s*#### Description.*?}}}/gs'
     replace: "{{{$1}}}"
   # Convert newlines into commas for tickets
-  - search: '/\n/g'
-    replace: "_NL_"
+  - search: '/\[([^\]]*)\n([^\]]*)\]/g'
+    replace: "[$1_NL_$2]"
   # # Fix multi lined ones
   # - search: "/\n(?=, )/gs"
   #   replace: ""
