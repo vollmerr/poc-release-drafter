@@ -21,15 +21,11 @@ replacers:
   - search: '/(\s+)(?=[^{]*}}})/g'
     replace: ", "
   # Normalize ticket formats - convert bare URLs to [TICKET](URL) format
-  - search: '/https:\/\/eleven\.atlassian\.net\/browse\/([A-Z]+-\d+)/g'
+  - search: '/(?<!\]\()https:\/\/eleven\.atlassian\.net\/browse\/([A-Z]+-\d+)/g'
     replace: "[$1](https://eleven.atlassian.net/browse/$1)"
-  # Normalize ticket formats - simple approach for bare IDs
-  - search: '/^([A-Z]+-\d+),/gm'
-    replace: "[$1](https://eleven.atlassian.net/browse/$1),"
-  - search: '/, ([A-Z]+-\d+),/g'
-    replace: ", [$1](https://eleven.atlassian.net/browse/$1),"
-  - search: '/, ([A-Z]+-\d+)$/gm'
-    replace: ", [$1](https://eleven.atlassian.net/browse/$1)"
+  # Normalize bare ticket IDs to [TICKET](URL) format
+  - search: '/(?<!\[)(?<!browse\/)([A-Z]+-\d+)(?!\]\()(?!\))/g'
+    replace: "[$1](https://eleven.atlassian.net/browse/$1)"
   # Make markers into list instead
   - search: "/{{{(.*?)}}}/gs"
     replace: "[$1]"
