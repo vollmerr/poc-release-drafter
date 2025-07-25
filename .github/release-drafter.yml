@@ -18,14 +18,14 @@ replacers:
   - search: '/{{{.*?#### Tickets\s*\n(.*?)\s*\n\s*#### Description.*?}}}/gs'
     replace: "{{{$1}}}"
   # Convert newlines into commas for tickets
-  - search: '/(?<=\{{{[^}]*)\n(?=[^}]*}}})/g'
+  - search: '\n(?=[^{]*}}})'
     replace: ", "
   # # Fix multi lined ones
   # - search: "/\n(?=, )/gs"
   #   replace: ""
-  # # Make markers into list instead
-  # - search: "/{{{(.*?)}}}/gs"
-  #   replace: "[$1]"
+  # Make markers into list instead
+  - search: "/{{{(.*?)}}}/gs"
+    replace: "[$1]"
 version-resolver:
   major:
     labels:
