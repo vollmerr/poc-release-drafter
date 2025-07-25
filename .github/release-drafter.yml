@@ -9,10 +9,10 @@ categories:
       - "sonesta"
   - title: "⚙️ Dependencies"
     label: "dependencies"
-change-template: "- $TITLE (#$NUMBER) - {{{$BODY}}} @$AUTHOR"
+change-template: "- $TITLE (#$NUMBER) - {{{$BODY}}} - @$AUTHOR"
 replacers:
   # Remove invalid pr bodys
-  - search: "/- {{{(?:(?!#### Tickets)(?!}}})[^])*?}}}/gs"
+  - search: "/ - {{{(?:(?!#### Tickets)(?!}}})[^])*?}}}/gs"
     replace: ""
   # Replace each pr body with just the tickets
   - search: '/{{{.*?#### Tickets\s*\n(.*?)\s*\n\s*#### Description.*?}}}/gs'
