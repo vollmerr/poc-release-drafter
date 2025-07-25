@@ -2,27 +2,32 @@ name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 categories:
   - title: "Accor"
-    labels:
-      - "accor"
+    label: "accor"
   - title: "Sonesta"
-    labels:
-      - "sonesta"
+    label: "sonesta"
+  - title: "X"
+    label: "x"
   - title: "⚙️ Dependencies"
     label: "dependencies"
-change-template: "- $TITLE (#$NUMBER) @$AUTHOR {{{$BODY}}}"
-change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
+change-template: "- $TITLE (#$NUMBER) - {{{$BODY}}} - @$AUTHOR"
 replacers:
   # Remove invalid pr bodys
-  - search: '/{{{(?:(?!#### Tickets)(?!}}})[^])*?}}}/gs'
+  - search: "/ - {{{(?:(?!#### Tickets)(?!}}})[^])*?}}}/gs"
     replace: ""
   # Replace each pr body with just the tickets
-  - search: '/{{{.*?#### Tickets\n(.*?)\n\n#### Description.*?}}}/gs'
+  - search: '/{{{.*?#### Tickets\s*\n(.*?)\s*\n\s*#### Description.*?}}}/gs'
     replace: "{{{$1}}}"
-  # Convert newlines to commas for ticket lists only (not affecting other content)
-  - search: '/\n(?=[^{]*}}})/gs'
+  # Convert newlines into commas for tickets
+  - search: '/(\s+)(?=[^{]*}}})/g'
     replace: ", "
+  # Normalize ticket formats - convert bare URLs to [TICKET](URL) format
+  - search: '/(?<!\]\()https:\/\/eleven\.atlassian\.net\/browse\/([A-Z]+-\d+)/g'
+    replace: "[$1](https://eleven.atlassian.net/browse/$1)"
+  # Normalize bare ticket IDs to [TICKET](URL) format
+  - search: '/(?<!\[)(?<!browse\/)([A-Z]+-\d+)(?!\]\()(?!\))/g'
+    replace: "[$1](https://eleven.atlassian.net/browse/$1)"
   # Make markers into list instead
-  - search: '/{{{(.*?)}}}/gs'
+  - search: "/{{{(.*?)}}}/gs"
     replace: "[$1]"
 version-resolver:
   major:
