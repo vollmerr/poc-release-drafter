@@ -1,9 +1,9 @@
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 categories:
-  - title: "<img src='https://raw.githubusercontent.com/eleven-software/portal-system/HEAD/.github/assets/accor-logo.svg' width='16' height='16' alt='Accor Logo'> Accor"
+  - title: "<img src='https://raw.githubusercontent.com/vollmerr/poc-release-drafter/HEAD/.github/assets/accor-logo.svg' width='16' height='16' alt='Accor Logo'> Accor"
     label: "accor"
-  - title: "<img src='https://raw.githubusercontent.com/eleven-software/portal-system/HEAD/.github/assets/sonesta-logo.svg' width='16' height='16' alt='Sonesta Logo'> Sonesta"
+  - title: "<img src='https://raw.githubusercontent.com/vollmerr/poc-release-drafter/HEAD/.github/assets/sonesta-logo.svg' width='16' height='16' alt='Sonesta Logo'> Sonesta"
     label: "sonesta"
   - title: "⚙️ Dependencies"
     label: "dependencies"
