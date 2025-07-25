@@ -5,6 +5,8 @@ categories:
     label: "accor"
   - title: "Sonesta"
     label: "sonesta"
+  - title: "X"
+    label: "x"
   - title: "⚙️ Dependencies"
     label: "dependencies"
 change-template: "- $TITLE (#$NUMBER) - {{{$BODY}}} - @$AUTHOR"
