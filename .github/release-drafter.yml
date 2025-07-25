@@ -7,7 +7,7 @@ categories:
   - title: "Sonesta"
     labels:
       - "sonesta"
-  - title: "⚙️ Dependencies"
+  - title: "⚙️ Dependencies 2"
     label: "dependencies"
 change-template: "- $TITLE (#$NUMBER) {{{$BODY}}} @$AUTHOR"
 replacers:
@@ -24,8 +24,11 @@ replacers:
   - search: '/https:\/\/eleven\.atlassian\.net\/browse\/([A-Z]+-\d+)/g'
     replace: "[$1](https://eleven.atlassian.net/browse/$1)"
   # Normalize ticket formats - convert bare ticket IDs to [TICKET](URL) format
-  - search: '/(^|, )([A-Z]+-\d+)(?=, |$)/g'
-    replace: "$1[$2](https://eleven.atlassian.net/browse/$2)"
+  - search: '/\b([A-Z]+-\d+)(?=, )/g'
+    replace: "[$1](https://eleven.atlassian.net/browse/$1)"
+  # Normalize ticket formats - convert bare ticket IDs at end to [TICKET](URL) format  
+  - search: '/\b([A-Z]+-\d+)(?=\}\}\})/g'
+    replace: "[$1](https://eleven.atlassian.net/browse/$1)"
   # Make markers into list instead
   - search: "/{{{(.*?)}}}/gs"
     replace: "[$1]"
